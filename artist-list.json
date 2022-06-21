@@ -1,0 +1,17 @@
+[
+  {
+  "id" : "1",
+  "name": "Ed Sheeran",
+  "image": "https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6"
+},
+{
+  "id" : "2",
+  "name": "Bad Bunny",
+  "image": "https://images2.listindiario.com/imagen/2020/05/16/618/617747/680x460/202005161424071/safaera-de-bad-bunny-vuelve-a-estar-disponible-en-spotify.jpeg"
+},
+{
+  "id" : "3",
+  "name": "Drake",
+  "image": "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5"
+}
+]
