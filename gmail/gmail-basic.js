@@ -2,7 +2,7 @@ const { google } = require('googleapis');
 const fs = require('fs');
 const oAuth2Client = require('./Authentication/Credentials.js');
 const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
-const historyFile = 'historyId.txt';
+const historyFile = '/root/mews/Mews-API/historyId.txt';
 
 async function getMessage(newsId) {
 	const message = await gmail.users.messages.get({

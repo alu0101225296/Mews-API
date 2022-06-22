@@ -5,6 +5,11 @@ function parseEmail(emailBody) {
 	let bodyEnd = emailBody.indexOf(
 		'\r\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 	);
+	
+	if (bodyEnd == -1) {
+		return [];
+	}
+
 	emailBody = emailBody.slice(0, bodyEnd).replace(/\=\=\=.+?\=\=\=/, '');
 	let newsList = emailBody.split(/\r\n\r\n/).filter(Boolean);
 	return newsList;

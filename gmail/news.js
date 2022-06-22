@@ -56,6 +56,16 @@ class News {
 			}
 		});
 	}
+
+	convertToJson() {
+		return {
+			date: this.date,
+			title: this.title,
+			body: this.body,
+			sourceLink: this.sourceLink,
+			artist: this.artist,
+		};
+	}
 }
 
 module.exports = News;

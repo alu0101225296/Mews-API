@@ -1,7 +1,7 @@
 const db = require('./database.js');
 
 async function addNews(news) {
-	const newsRef = db.collection('News').add(news);
+	db.collection('News').add(news);
 }
 
 async function getAllNews() {
