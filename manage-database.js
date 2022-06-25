@@ -1,11 +1,22 @@
-const { addArtist, removeAllArtist } = require('./firebase/firebase-artist.js');
+const {
+	addArtist,
+	removeAllArtist,
+	getArtistByName,
+} = require('./firebase/firebase-artist.js');
 const artistList = require('./artist-list.json');
+const { getNewsByArtist } = require('./firebase/firebase-news.js');
 
-try {
-	artistList.forEach((artist) => addArtist(artist));
-	console.log('Artists added');
-} catch (error) {
-	console.log(error);
-}
+// const artistLista = ['1', '3'];
 
-// removeAllArtist();
+// getNewsByArtist(artistLista).then((news) => {
+// 	console.log(news.length);
+// });
+
+const name = 'Ed Sheeran';
+getArtistByName(name)
+	.then((artistId) => {
+		console.log(artistId);
+	})
+	.catch((error) => {
+		console.log(error);
+	});

@@ -13,6 +13,7 @@ app.use(express.json());
 // Routes
 app.use(require('./routes/index'));
 app.use(require('./routes/push-notification'));
+app.use(require('./routes/phone-app'));
 
 // Start server
 app.listen(app.get('port'), () => {

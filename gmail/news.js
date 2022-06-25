@@ -1,5 +1,9 @@
+const { getArtistByName } = require('../firebase/firebase-artist.js');
+
 class News {
-	artist;
+	artistId;
+	artistImage;
+	artistName;
 	date;
 	title;
 	body;
@@ -24,10 +28,6 @@ class News {
 		this.sourceLink = source;
 	}
 
-	setArtist(artist) {
-		this.artist = artist;
-	}
-
 	getDate() {
 		return this.date;
 	}
@@ -44,15 +44,15 @@ class News {
 		return this.sourceLink;
 	}
 
-	getArtist() {
-		return this.artist;
-	}
-
 	setArtistInBody(artistList) {
 		let newsContent = (this.title + ' ' + this.body).toLowerCase();
 		artistList.forEach((artist) => {
 			if (newsContent.includes(artist.toLowerCase())) {
-				this.artist = artist;
+				getArtistByName(artist).then((artist) => {
+					this.artistId = artist.id;
+					this.artistImage = artist.image;
+					this.artistName = artist.name;
+				});
 			}
 		});
 	}

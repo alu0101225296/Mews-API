@@ -28,10 +28,21 @@ async function getArtistsById(artistId) {
 	return await db.collection('Artists').doc(artistId).get();
 }
 
+async function getArtistByName(artistName) {
+	const citiesRef = db.collection('Artists');
+	const snapshot = await citiesRef.where('name', '==', artistName).get();
+	if (snapshot.empty) {
+		console.log('No matching documents.');
+		return;
+	}
+	return snapshot.docs[0].data();
+}
+
 module.exports = {
 	addArtist,
 	removeArtist,
 	removeAllArtist,
 	getAllArtists,
 	getArtistsById,
+	getArtistByName,
 };

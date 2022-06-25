@@ -11,9 +11,11 @@ async function getAllNews() {
 
 async function getNewsByArtist(artistId) {
 	const snapshot = await db.collection('News').get();
-	return snapshot.docs.map((doc) => {
-		return artistId.includes(doc.data().id) ? doc.data() : null;
-	});
+	return snapshot.docs
+		.map((doc) => {
+			return artistId.includes(doc.data().id) ? doc.data() : null;
+		})
+		.filter((news) => news != null);
 }
 
 module.exports = { addNews, getAllNews, getNewsByArtist };

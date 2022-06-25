@@ -38,20 +38,19 @@ async function notifyAndAddNewsFromMail() {
 	let newHistory = await getHistory(historyId);
 
 	if (newHistory.history != undefined) {
-		let messages = newHistory.history[newHistory.history.length - 1].messagesAdded.map(
-			(msg) => msg.message.id
-		);
+		let messages = newHistory.history[
+			newHistory.history.length - 1
+		].messagesAdded.map((msg) => msg.message.id);
 
-		
-		let newsList = await Promise.all(messages.map(
-			async (messageId) => { 
+		let newsList = await Promise.all(
+			messages.map(async (messageId) => {
 				let news = await collectNews(messageId);
 				console.log(messageId);
 				console.log(news);
 				return news;
-			}
-		));
-		
+			})
+		);
+
 		newsList = newsList.flat();
 		newsList.forEach((news) => {
 			addNews(news.convertToJson());
@@ -59,7 +58,7 @@ async function notifyAndAddNewsFromMail() {
 
 		historyId = newHistory.historyId;
 		fs.writeFileSync(historyFile, historyId);
-		
+
 		console.log('New news added');
 	} else {
 		console.log('No new news');
