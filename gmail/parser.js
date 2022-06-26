@@ -5,7 +5,7 @@ function parseEmail(emailBody) {
 	let bodyEnd = emailBody.indexOf(
 		'\r\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 	);
-	
+
 	if (bodyEnd == -1) {
 		return [];
 	}
@@ -22,7 +22,7 @@ function parseNews(newsRaw) {
 	if (newsList.length < 4) {
 		throw new Error('Something went wrong parsing the news');
 	}
-	news.sourceLink = newsList.pop();
+	news.sourceLink = newsList.pop().slice(1, -1);
 	let body = newsList.pop();
 	while (newsList.at(-1).length > 50) {
 		body = newsList.pop() + ' ' + body;
