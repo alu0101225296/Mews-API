@@ -44,17 +44,18 @@ class News {
 		return this.sourceLink;
 	}
 
-	setArtistInBody(artistList) {
+	async setArtistInBody(artistList) {
 		let newsContent = (this.title + ' ' + this.body).toLowerCase();
-		artistList.forEach((artist) => {
-			if (newsContent.includes(artist.toLowerCase())) {
-				getArtistByName(artist).then((artist) => {
-					this.artistId = artist.id;
-					this.artistImage = artist.image;
-					this.artistName = artist.name;
-				});
+		for (let i = 0; i < artistList.length; i++) {
+			let artistName = artistList[i].toLowerCase();
+			if (newsContent.includes(artistName)) {
+				let artist = await getArtistByName(artistList[i]);
+				this.artistId = artist.id;
+				this.artistName = artist.name;
+				this.artistImage = artist.image;
+				break;
 			}
-		});
+		}
 	}
 
 	convertToJson() {
@@ -63,7 +64,9 @@ class News {
 			title: this.title,
 			body: this.body,
 			sourceLink: this.sourceLink,
-			artist: this.artist,
+			artistName: this.artistName,
+			artistImage: this.artistImage,
+			artistId: this.artistId,
 		};
 	}
 }

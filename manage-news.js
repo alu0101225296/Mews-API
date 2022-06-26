@@ -20,15 +20,16 @@ async function collectNews(newsId) {
 	let newsRawList = parseEmail(decoded_body);
 	let newsList = newsRawList.map((news) => {
 		const parsedNews = parseNews(news);
-		let newsObj = new News(
+		return new News(
 			date,
 			parsedNews.title,
 			parsedNews.body,
 			parsedNews.sourceLink
 		);
-		newsObj.setArtistInBody(artistNameList);
-		return newsObj;
 	});
+	for (const news of newsList) {
+		await news.setArtistInBody(artistNameList);
+	}
 	return newsList;
 }
 
@@ -64,5 +65,15 @@ async function notifyAndAddNewsFromMail() {
 		console.log('No new news');
 	}
 }
+
+// watch();
+
+collectNews('180d1251d92550cd')
+	.then((news) => {
+		console.log(news);
+	})
+	.catch((error) => {
+		console.log(error);
+	});
 
 module.exports = notifyAndAddNewsFromMail;
