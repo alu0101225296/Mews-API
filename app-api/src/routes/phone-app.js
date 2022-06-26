@@ -45,14 +45,14 @@ router.put('/api/user/unsub', (req, res) => {
 });
 
 router.get('/api/user/subbed', (req, res) => {
-	console.log(req.query.array);
+	console.log(req.query);
 	isSubscribed(req.query.uid, req.query.artistId).then((subscribed) => {
 		res.json({ subscribed });
 	});
 });
 
 router.get('/api/user/subs', (req, res) => {
-	console.log(req.query.array);
+	console.log(req.query);
 	getSubscriptions(req.query.uid).then((subscriptions) => {
 		res.json(subscriptions);
 	});
