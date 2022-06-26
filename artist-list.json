@@ -13,5 +13,55 @@
   "id" : "3",
   "name": "Drake",
   "image": "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5"
+},
+{
+  "id" : "4",
+  "name": "The Weeknd",
+  "image": "https://www.kissfm.es/wp-content/uploads/2022/01/1970-01-20-012239573.jpg"
+},
+{
+  "id" : "5",
+  "name" : "Post Malone",
+  "image": "https://lastfm.freetls.fastly.net/i/u/770x0/b1364131db8fcd027d8c5faf79bc884d.jpg"
+},
+{
+  "id" : "6",
+  "name" : "Taylor Swift",
+  "image": "https://i.scdn.co/image/ab67706c0000bebb3176e77a53bab3e1df01823d"
+},
+{
+  "id" : "7",
+  "name": "Imagine Dragons",
+  "image" : "https://i.scdn.co/image/ab6761610000e5eb920dc1f617550de8388f368e"
+},
+{
+  "id" : "8",
+  "name" : "Calvin Harris",
+  "image": "https://edm.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTcyNTI4NzI1Njg0OTIyMjgy/calvin-harris.jpg"
+},
+{
+  "id" : "9",
+  "name": "Eminem",
+  "image" : "https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b"
+},
+{
+  "id" : "10",
+  "name" : "Rihanna",
+  "image": "https://mujeractual.cl/wp-content/uploads/2016/04/Rihanna-1024x683-1.jpg"
+},
+{
+  "id" : "11",
+  "name" : "Bruno Mars",
+  "image" : "https://i.scdn.co/image/ab6761610000e5ebc36dd9eb55fb0db4911f25dd"
+},
+{
+  "id" : "12",
+  "name" : "Ariana Grande",
+  "image" : "https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952"
+},
+{
+  "id" : "13",
+  "name" : "Justin Bieber",
+  "image" : "https://i.scdn.co/image/ab6761610000e5eb8ae7f2aaa9817a704a87ea36"
 }
 ]

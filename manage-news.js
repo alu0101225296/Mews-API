@@ -66,14 +66,14 @@ async function notifyAndAddNewsFromMail() {
 	}
 }
 
-// watch();
+watch();
 
-collectNews('180d1251d92550cd')
-	.then((news) => {
-		console.log(news);
-	})
-	.catch((error) => {
-		console.log(error);
-	});
+// collectNews('180d1251d92550cd')
+// 	.then((news) => {
+// 		console.log(news);
+// 	})
+// 	.catch((error) => {
+// 		console.log(error);
+// 	});
 
 module.exports = notifyAndAddNewsFromMail;
