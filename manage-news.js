@@ -66,7 +66,7 @@ async function notifyAndAddNewsFromMail() {
 	}
 }
 
-watch();
+// watch();
 
 // collectNews('180d1251d92550cd')
 // 	.then((news) => {

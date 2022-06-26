@@ -31,10 +31,20 @@ async function isSubscribed(uid, subscription) {
 	return subscriptions.includes(subscription);
 }
 
+async function getSubscribedArtists(uid) {
+	const subscriptions = await getSubscriptions(uid);
+	const artists = await db
+		.collection('Artists')
+		.where('id', 'in', subscriptions)
+		.get();
+	return artists.docs.map((doc) => doc.data());
+}
+
 module.exports = {
 	addUser,
 	addSubscription,
 	removeSubscription,
 	getSubscriptions,
 	isSubscribed,
+	getSubscribedArtists,
 };

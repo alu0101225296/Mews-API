@@ -11,6 +11,7 @@ const {
 	removeSubscription,
 	getSubscriptions,
 	isSubscribed,
+	getSubscribedArtists,
 } = require('./firebase/firebase-user.js');
 // const artistLista = ['3'];
 
@@ -36,4 +37,7 @@ const {
 // });
 // getSubscriptions('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((subscriptions) => {
 // 	console.log(subscriptions);
+// });
+// getSubscribedArtists('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((artists) => {
+// 	console.log(artists);
 // });

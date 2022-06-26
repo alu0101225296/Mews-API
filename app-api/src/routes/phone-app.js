@@ -6,12 +6,19 @@ const {
 	removeSubscription,
 	getSubscriptions,
 	isSubscribed,
+	getSubscribedArtists,
 } = require('../../../firebase/firebase-user.js');
 const { Router } = require('express');
 const router = Router();
 
-router.get('/api/artist', (req, res) => {
+router.get('/api/artist/all', (req, res) => {
 	getAllArtists().then((artists) => {
+		res.json(artists);
+	});
+});
+
+router.get('/api/artist/subbed', (req, res) => {
+	getSubscribedArtists(req.user.uid).then((artists) => {
 		res.json(artists);
 	});
 });

@@ -29,8 +29,8 @@ async function getArtistsById(artistId) {
 }
 
 async function getArtistByName(artistName) {
-	const citiesRef = db.collection('Artists');
-	const snapshot = await citiesRef.where('name', '==', artistName).get();
+	const referenced = db.collection('Artists');
+	const snapshot = await referenced.where('name', '==', artistName).get();
 	if (snapshot.empty) {
 		console.log('No matching documents.');
 		return;
