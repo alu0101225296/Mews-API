@@ -40,6 +40,21 @@ async function getSubscribedArtists(uid) {
 	return artists.docs.map((doc) => doc.data());
 }
 
+async function getRecentNews(uid) {
+	const subscriptions = await getSubscriptions(uid);
+	const artists = await db
+		.collection('Artists')
+		.where('id', 'in', subscriptions)
+		.get();
+	const artistIds = artists.docs.map((doc) => doc.data().id);
+	const news = await db
+		.collection('News')
+		.orderBy('date', 'desc')
+		.where('artistId', 'in', artistIds)
+		.get();
+	return news.docs.map((doc) => doc.data());
+}
+
 module.exports = {
 	addUser,
 	addSubscription,
@@ -47,4 +62,5 @@ module.exports = {
 	getSubscriptions,
 	isSubscribed,
 	getSubscribedArtists,
+	getRecentNews,
 };

@@ -12,6 +12,7 @@ const {
 	getSubscriptions,
 	isSubscribed,
 	getSubscribedArtists,
+	getRecentNews,
 } = require('./firebase/firebase-user.js');
 // const artistLista = ['3'];
 
@@ -40,4 +41,7 @@ const {
 // });
 // getSubscribedArtists('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((artists) => {
 // 	console.log(artists);
+// });
+// getRecentNews('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((news) => {
+// 	console.log(news);
 // });

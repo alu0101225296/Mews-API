@@ -7,6 +7,7 @@ const {
 	getSubscriptions,
 	isSubscribed,
 	getSubscribedArtists,
+	getRecentNews,
 } = require('../../../firebase/firebase-user.js');
 const { Router } = require('express');
 const router = Router();
@@ -26,6 +27,12 @@ router.get('/api/artist/subbed', (req, res) => {
 router.get('/api/news/', (req, res) => {
 	console.log(req.query.array);
 	getNewsByArtist(req.query.array).then((news) => {
+		res.json(news);
+	});
+});
+
+router.get('/api/news/recent', (req, res) => {
+	getRecentNews(req.query.uid).then((news) => {
 		res.json(news);
 	});
 });
