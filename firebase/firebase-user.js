@@ -21,4 +21,20 @@ async function removeSubscription(uid, subscription) {
 		});
 }
 
-module.exports = { addUser, addSubscription, removeSubscription };
+async function getSubscriptions(uid) {
+	const user = await db.collection('Users').doc(uid).get();
+	return user.data().subscription;
+}
+
+async function isSubscribed(uid, subscription) {
+	const subscriptions = await getSubscriptions(uid);
+	return subscriptions.includes(subscription);
+}
+
+module.exports = {
+	addUser,
+	addSubscription,
+	removeSubscription,
+	getSubscriptions,
+	isSubscribed,
+};

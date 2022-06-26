@@ -4,6 +4,8 @@ const {
 	addUser,
 	addSubscription,
 	removeSubscription,
+	getSubscriptions,
+	isSubscribed,
 } = require('../../../firebase/firebase-user.js');
 const { Router } = require('express');
 const router = Router();
@@ -39,6 +41,20 @@ router.put('/api/user/unsub', (req, res) => {
 	console.log(req.body);
 	removeSubscription(req.body.uid, req.body.subscription).then(() => {
 		res.json({ success: true });
+	});
+});
+
+router.get('/api/user/subbed', (req, res) => {
+	console.log(req.query.array);
+	isSubscribed(req.query.uid, req.query.artistId).then((subscribed) => {
+		res.json({ subscribed });
+	});
+});
+
+router.get('/api/user/subs', (req, res) => {
+	console.log(req.query.array);
+	getSubscriptions(req.query.uid).then((subscriptions) => {
+		res.json(subscriptions);
 	});
 });
 

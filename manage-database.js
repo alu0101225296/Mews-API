@@ -9,6 +9,8 @@ const {
 	addUser,
 	addSubscription,
 	removeSubscription,
+	getSubscriptions,
+	isSubscribed,
 } = require('./firebase/firebase-user.js');
 // const artistLista = ['3'];
 
@@ -27,5 +29,11 @@ const {
 // });
 
 // addUser({ uid: 'A4TgP3NAsGVfwwX5jcGzRb0LMwj2', subscription: [] });
-addSubscription('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '2');
-removeSubscription('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '3');
+// addSubscription('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '8');
+// removeSubscription('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '3');
+// isSubscribed('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '8').then((subscribed) => {
+// 	console.log(subscribed);
+// });
+// getSubscriptions('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((subscriptions) => {
+// 	console.log(subscriptions);
+// });
