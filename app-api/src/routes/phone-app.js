@@ -18,7 +18,7 @@ router.get('/api/artist/all', (req, res) => {
 });
 
 router.get('/api/artist/subbed', (req, res) => {
-	getSubscribedArtists(req.user.uid).then((artists) => {
+	getSubscribedArtists(req.query.uid).then((artists) => {
 		res.json(artists);
 	});
 });
