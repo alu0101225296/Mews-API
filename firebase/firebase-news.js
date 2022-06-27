@@ -9,11 +9,11 @@ async function getAllNews() {
 	return snapshot.docs.map((doc) => doc.data());
 }
 
-async function getNewsByArtist(listOfArtistId) {
+async function getNewsByArtist(artistId) {
 	const news = await db
 		.collection('News')
 		.orderBy('date', 'desc')
-		.where('artistId', 'in', listOfArtistId)
+		.where('artistId', '==', artistId)
 		.get();
 	return news.docs.map((doc) => doc.data());
 }

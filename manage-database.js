@@ -16,7 +16,7 @@ const {
 } = require('./firebase/firebase-user.js');
 // const artistLista = ['3'];
 
-// getNewsByArtist(artistLista).then((news) => {
+// getNewsByArtist('3').then((news) => {
 // 	console.log(news);
 // });
 
