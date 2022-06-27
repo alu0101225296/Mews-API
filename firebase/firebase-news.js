@@ -9,13 +9,13 @@ async function getAllNews() {
 	return snapshot.docs.map((doc) => doc.data());
 }
 
-async function getNewsByArtist(artistId) {
-	const snapshot = await db.collection('News').get();
-	return snapshot.docs
-		.map((doc) => {
-			return artistId.includes(doc.data().artistId) ? doc.data() : null;
-		})
-		.filter((news) => news != null);
+async function getNewsByArtist(listOfArtistId) {
+	const news = await db
+		.collection('News')
+		.orderBy('date', 'desc')
+		.where('artistId', 'in', listOfArtistId)
+		.get();
+	return news.docs.map((doc) => doc.data());
 }
 
 module.exports = { addNews, getAllNews, getNewsByArtist };
