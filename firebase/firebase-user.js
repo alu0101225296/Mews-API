@@ -33,6 +33,9 @@ async function isSubscribed(uid, subscription) {
 
 async function getSubscribedArtists(uid) {
 	const subscriptions = await getSubscriptions(uid);
+	if (!subscriptions) {
+		return [];
+	}
 	const artists = await db
 		.collection('Artists')
 		.where('id', 'in', subscriptions)
@@ -42,6 +45,9 @@ async function getSubscribedArtists(uid) {
 
 async function getRecentNews(uid) {
 	const subscriptions = await getSubscriptions(uid);
+	if (!subscriptions) {
+		return [];
+	}
 	const artists = await db
 		.collection('Artists')
 		.where('id', 'in', subscriptions)
