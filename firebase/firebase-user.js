@@ -33,7 +33,7 @@ async function isSubscribed(uid, subscription) {
 
 async function getSubscribedArtists(uid) {
 	const subscriptions = await getSubscriptions(uid);
-	if (!subscriptions) {
+	if (!subscriptions || subscriptions.length === 0) {
 		return [];
 	}
 	const artists = await db
@@ -45,7 +45,7 @@ async function getSubscribedArtists(uid) {
 
 async function getRecentNews(uid) {
 	const subscriptions = await getSubscriptions(uid);
-	if (!subscriptions) {
+	if (!subscriptions || subscriptions.length === 0) {
 		return [];
 	}
 	const artists = await db
