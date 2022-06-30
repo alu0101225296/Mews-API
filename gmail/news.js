@@ -1,9 +1,6 @@
 const { getArtistByName } = require('../firebase/firebase-artist.js');
 
 class News {
-	artistId;
-	artistImage;
-	artistName;
 	date;
 	title;
 	body;
@@ -44,29 +41,12 @@ class News {
 		return this.sourceLink;
 	}
 
-	async setArtistInBody(artistList) {
-		let newsContent = (this.title + ' ' + this.body).toLowerCase();
-		for (let i = 0; i < artistList.length; i++) {
-			let artistName = artistList[i].toLowerCase();
-			if (newsContent.includes(artistName)) {
-				let artist = await getArtistByName(artistList[i]);
-				this.artistId = artist.id;
-				this.artistName = artist.name;
-				this.artistImage = artist.image;
-				break;
-			}
-		}
-	}
-
 	convertToJson() {
 		return {
 			date: this.date,
 			title: this.title,
 			body: this.body,
 			sourceLink: this.sourceLink,
-			artistName: this.artistName,
-			artistImage: this.artistImage,
-			artistId: this.artistId,
 		};
 	}
 }

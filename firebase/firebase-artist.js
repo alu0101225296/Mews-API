@@ -2,6 +2,10 @@ const db = require('./database.js');
 
 async function addArtist(artist) {
 	const artistRef = db.collection('Artists').doc(artist.id);
+	const artistSnapshot = await artistRef.get();
+	if (artistSnapshot.exists) {
+		return;
+	}
 	await artistRef.set(artist);
 }
 
@@ -25,9 +29,10 @@ async function getAllArtists() {
 }
 
 async function getArtistsById(artistId) {
-	return await db.collection('Artists').doc(artistId).get();
+	return (await db.collection('Artists').doc(artistId).get()).data();
 }
 
+// no debería ser necesaria
 async function getArtistByName(artistName) {
 	const referenced = db.collection('Artists');
 	const snapshot = await referenced.where('name', '==', artistName).get();

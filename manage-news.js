@@ -8,10 +8,7 @@ const fs = require('fs');
 const historyFile = '/root/mews/Mews-API/historyId.txt';
 
 async function collectNews(newsId) {
-	let artistList = await getAllArtists();
 	const message = await getMessage(newsId);
-
-	artistNameList = artistList.map((artist) => artist.name);
 	const date = new Date(message.headers.date);
 
 	let encoded_body = message.data.payload.parts[0].body.data;
@@ -27,9 +24,6 @@ async function collectNews(newsId) {
 			parsedNews.sourceLink
 		);
 	});
-	for (const news of newsList) {
-		await news.setArtistInBody(artistNameList);
-	}
 	return newsList;
 }
 
@@ -68,12 +62,14 @@ async function notifyAndAddNewsFromMail() {
 
 // watch();
 
-// collectNews('180d1251d92550cd')
-// 	.then((news) => {
-// 		console.log(news);
-// 	})
-// 	.catch((error) => {
-// 		console.log(error);
-// 	});
+collectNews('180d1251d92550cd')
+	.then((news) => {
+		news.forEach((news) => {
+			addNews(news.convertToJson());
+		});
+	})
+	.catch((error) => {
+		console.log(error);
+	});
 
 module.exports = notifyAndAddNewsFromMail;

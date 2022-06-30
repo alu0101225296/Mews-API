@@ -1,21 +1,34 @@
 const db = require('./database.js');
+const FieldValue = require('firebase-admin').firestore.FieldValue;
 
 async function addNews(news) {
-	db.collection('News').add(news);
+	const newsContent = (news.title + '\n' + news.body).toLowerCase();
+	db.collection('Artists')
+		.get()
+		.then((artists) => {
+			artists.forEach((artist) => {
+				const artistName = artist.data().name.toLowerCase();
+				const artistId = artist.id;
+				if (newsContent.includes(artistName)) {
+					db.collection('Artists').doc(artistId).collection('News').add(news);
+				}
+			});
+		});
 }
 
+// not used
 async function getAllNews() {
 	const snapshot = await db.collection('News').get();
 	return snapshot.docs.map((doc) => doc.data());
 }
 
 async function getNewsByArtist(artistId) {
-	const news = await db
+	const snapshot = await db
+		.collection('Artists')
+		.doc(artistId)
 		.collection('News')
-		.orderBy('date', 'desc')
-		.where('artistId', '==', artistId)
 		.get();
-	return news.docs.map((doc) => doc.data());
+	return snapshot.docs.map((doc) => doc.data());
 }
 
 module.exports = { addNews, getAllNews, getNewsByArtist };

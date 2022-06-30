@@ -2,6 +2,8 @@ const {
 	addArtist,
 	removeAllArtist,
 	getArtistByName,
+	getAllArtists,
+	getArtistsById,
 } = require('./firebase/firebase-artist.js');
 const artistList = require('./artist-list.json');
 const { getNewsByArtist } = require('./firebase/firebase-news.js');
@@ -30,18 +32,26 @@ const {
 // 		});
 // });
 
-// addUser({ uid: 'A4TgP3NAsGVfwwX5jcGzRb0LMwj2', subscription: [] });
-// addSubscription('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '8');
-// removeSubscription('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '3');
-// isSubscribed('A4TgP3NAsGVfwwX5jcGzRb0LMwj2', '8').then((subscribed) => {
-// 	console.log(subscribed);
-// });
-// getSubscriptions('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((subscriptions) => {
-// 	console.log(subscriptions);
-// });
-// getSubscribedArtists('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((artists) => {
+// getAllArtists().then((artists) => {
 // 	console.log(artists);
 // });
-// getRecentNews('A4TgP3NAsGVfwwX5jcGzRb0LMwj2').then((news) => {
-// 	console.log(news);
+
+// addUser({ uid: 'aE45nq1O8TV33DnK0qqopchZIJ32', subscription: [] });
+// addSubscription('aE45nq1O8TV33DnK0qqopchZIJ32', '2');
+// removeSubscription('aE45nq1O8TV33DnK0qqopchZIJ32', '8');
+// isSubscribed('aE45nq1O8TV33DnK0qqopchZIJ32', '8').then((subscribed) => {
+// 	console.log(subscribed);
 // });
+// getSubscriptions('aE45nq1O8TV33DnK0qqopchZIJ32').then((subscriptions) => {
+// 	console.log(subscriptions);
+// });
+// getSubscribedArtists('aE45nq1O8TV33DnK0qqopchZIJ32').then((artists) => {
+// 	console.log(artists);
+// });
+// getArtistsById('2').then((artist) => {
+// 	console.log(artist);
+// });
+
+getRecentNews('aE45nq1O8TV33DnK0qqopchZIJ32').then((news) => {
+	console.log(news);
+});
