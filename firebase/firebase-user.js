@@ -17,7 +17,7 @@ async function addSubscription(uid, subscription) {
 	db.collection('Artists')
 		.doc(subscription)
 		.update({
-			subscriptionCount: FieldValue.increment(1),
+			followers: FieldValue.increment(1),
 		});
 }
 
@@ -31,7 +31,7 @@ async function removeSubscription(uid, subscription) {
 	db.collection('Artists')
 		.doc(subscription)
 		.update({
-			subscriptionCount: FieldValue.increment(-1),
+			followers: FieldValue.increment(-1),
 		});
 }
 
