@@ -37,6 +37,9 @@ async function removeSubscription(uid, subscription) {
 
 async function getSubscriptions(uid) {
 	const user = await db.collection('Users').doc(uid).get();
+	if (!user.exists) {
+		return [];
+	}
 	return user.data().subscription;
 }
 
