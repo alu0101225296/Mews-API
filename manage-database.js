@@ -52,6 +52,6 @@ const {
 // 	console.log(artist);
 // });
 
-getRecentNews('aE45nq1O8TV33DnK0qqopchZIJ32').then((news) => {
-	console.log(news);
-});
+// getRecentNews('aE45nq1O8TV33DnK0qqopchZIJ32').then((news) => {
+// 	console.log(news);
+// });

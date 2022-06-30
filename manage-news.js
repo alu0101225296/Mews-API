@@ -62,14 +62,14 @@ async function notifyAndAddNewsFromMail() {
 
 // watch();
 
-collectNews('180d1251d92550cd')
-	.then((news) => {
-		news.forEach((news) => {
-			addNews(news.convertToJson());
-		});
-	})
-	.catch((error) => {
-		console.log(error);
-	});
+// collectNews('180d1251d92550cd')
+// 	.then((news) => {
+// 		news.forEach((news) => {
+// 			addNews(news.convertToJson());
+// 		});
+// 	})
+// 	.catch((error) => {
+// 		console.log(error);
+// 	});
 
 module.exports = notifyAndAddNewsFromMail;
