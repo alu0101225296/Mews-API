@@ -32,13 +32,13 @@ router.get('/api/news/:artistId', (req, res) => {
 			req.params.artistId,
 			req.query.limit,
 			req.query.start
-		).then((news, lastNews) => {
-			res.json({ news, lastNews });
+		).then((news) => {
+			res.json(news);
 		});
 	} else {
 		getNewsByArtistUsingLimit(req.params.artistId, req.query.limit).then(
-			(news, lastNews) => {
-				res.json({ news, lastNews });
+			(news) => {
+				res.json(news);
 			}
 		);
 	}

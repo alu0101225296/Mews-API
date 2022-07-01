@@ -59,6 +59,6 @@ const {
 // 	console.log(news);
 // });
 
-getNewsByArtistUsingLimit('3', 10).then((news) => {
-	console.log(news.lastNews);
-});
+// getNewsByArtistUsingLimit('3', 10).then((news) => {
+// 	console.log(news.lastNews);
+// });
