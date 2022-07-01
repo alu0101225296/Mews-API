@@ -23,7 +23,7 @@ router.get('/api/artist', (req, res) => {
 });
 
 router.get('/api/news/:artistId', (req, res) => {
-	if (!req.query.limit || !req.query.startAfter) {
+	if (!req.query.limit) {
 		getNewsByArtist(req.params.artistId).then((news) => {
 			res.json(news);
 		});
