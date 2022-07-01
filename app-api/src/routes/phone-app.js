@@ -21,22 +21,22 @@ router.get('/api/artist', (req, res) => {
 	});
 });
 
-router.get('/api/news/:artistId/:limit', (req, res) => {
-	getNewsByArtistUsingLimit(req.params.artistId, req.params.limit).then(
-		(news) => {
+router.get('/api/news/:artistId', (req, res) => {
+	if (req.query.start) {
+		getNewsByArtistUsingLimitAndStartAfter(
+			req.params.artistId,
+			req.query.limit,
+			req.query.start
+		).then((news) => {
 			res.json(news);
-		}
-	);
-});
-
-router.get('/api/news/:artistId/:limit/:start', (req, res) => {
-	getNewsByArtistUsingLimitAndStartAfter(
-		req.query.artistId,
-		req.query.limit,
-		req.query.start
-	).then((news) => {
-		res.json(news);
-	});
+		});
+	} else {
+		getNewsByArtistUsingLimit(req.params.artistId, req.query.limit).then(
+			(news) => {
+				res.json(news);
+			}
+		);
+	}
 });
 
 // Recent news of artists that the user is subscribed to
@@ -48,35 +48,35 @@ router.get('/api/user/:uid/news', (req, res) => {
 
 // Register user
 router.post('/api/user/:uid', (req, res) => {
-	addUser(req.params.uid).then(() => {
+	addUser(req.body).then(() => {
 		res.json({ success: true });
 	});
 });
 
 // Get user subscribed artists
 router.get('/api/user/:uid/subs', (req, res) => {
-	getSubscribedArtists(req.query.uid).then((artists) => {
+	getSubscribedArtists(req.params.uid).then((artists) => {
 		res.json(artists);
 	});
 });
 
 // Subscribe to artist
 router.put('/api/user/:uid/subs/:artistId', (req, res) => {
-	addSubscription(req.query.uid, req.query.artistId).then(() => {
+	addSubscription(req.params.uid, req.params.artistId).then(() => {
 		res.json({ success: true });
 	});
 });
 
 // Unsubscribe from artist
 router.delete('/api/user/:uid/subs/:artistId', (req, res) => {
-	removeSubscription(req.body.uid, req.body.subscription).then(() => {
+	removeSubscription(req.params.uid, req.params.artistId).then(() => {
 		res.json({ success: true });
 	});
 });
 
 // Check if user is subscribed to artist
 router.get('/api/user/:uid/subs/:artistId', (req, res) => {
-	isSubscribed(req.query.uid, req.query.artistId).then((subscribed) => {
+	isSubscribed(req.params.uid, req.params.artistId).then((subscribed) => {
 		res.json({ subscribed });
 	});
 });

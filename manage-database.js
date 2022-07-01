@@ -22,15 +22,15 @@ const {
 // 	console.log(news);
 // });
 
-// artistList.forEach((artist) => {
-// 	addArtist(artist)
-// 		.then(() => {
-// 			console.log('Artist added');
-// 		})
-// 		.catch((error) => {
-// 			console.log(error);
-// 		});
-// });
+artistList.forEach((artist) => {
+	addArtist(artist)
+		.then(() => {
+			console.log('Artist added');
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+});
 
 // getAllArtists().then((artists) => {
 // 	console.log(artists);
