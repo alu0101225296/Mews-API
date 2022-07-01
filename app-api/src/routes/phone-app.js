@@ -1,5 +1,6 @@
 const { getAllArtists } = require('../../../firebase/firebase-artist.js');
 const {
+	getNewsByArtist,
 	getNewsByArtistUsingLimit,
 	getNewsByArtistUsingLimitAndStartAfter,
 } = require('../../../firebase/firebase-news.js');
@@ -22,7 +23,11 @@ router.get('/api/artist', (req, res) => {
 });
 
 router.get('/api/news/:artistId', (req, res) => {
-	if (req.query.start) {
+	if (!req.query.limit || !req.query.startAfter) {
+		getNewsByArtist(req.params.artistId).then((news) => {
+			res.json(news);
+		});
+	} else if (req.query.start) {
 		getNewsByArtistUsingLimitAndStartAfter(
 			req.params.artistId,
 			req.query.limit,
