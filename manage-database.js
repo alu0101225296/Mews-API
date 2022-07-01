@@ -6,7 +6,10 @@ const {
 	getArtistsById,
 } = require('./firebase/firebase-artist.js');
 const artistList = require('./artist-list.json');
-const { getNewsByArtist } = require('./firebase/firebase-news.js');
+const {
+	getNewsByArtist,
+	getNewsByArtistUsingLimit,
+} = require('./firebase/firebase-news.js');
 const {
 	addUser,
 	addSubscription,
@@ -22,15 +25,15 @@ const {
 // 	console.log(news);
 // });
 
-artistList.forEach((artist) => {
-	addArtist(artist)
-		.then(() => {
-			console.log('Artist added');
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-});
+// artistList.forEach((artist) => {
+// 	addArtist(artist)
+// 		.then(() => {
+// 			console.log('Artist added');
+// 		})
+// 		.catch((error) => {
+// 			console.log(error);
+// 		});
+// });
 
 // getAllArtists().then((artists) => {
 // 	console.log(artists);
@@ -55,3 +58,7 @@ artistList.forEach((artist) => {
 // getRecentNews('aE45nq1O8TV33DnK0qqopchZIJ32').then((news) => {
 // 	console.log(news);
 // });
+
+getNewsByArtistUsingLimit('3', 10).then((news) => {
+	console.log(news.lastNews);
+});
