@@ -30,17 +30,18 @@ router.get('/api/news/:artistId', (req, res) => {
 	} else if (req.query.start) {
 		getNewsByArtistUsingLimitAndStartAfter(
 			req.params.artistId,
-			req.query.limit,
+			Number(req.query.limit),
 			req.query.start
 		).then((news) => {
 			res.json(news);
 		});
 	} else {
-		getNewsByArtistUsingLimit(req.params.artistId, req.query.limit).then(
-			(news) => {
-				res.json(news);
-			}
-		);
+		getNewsByArtistUsingLimit(
+			req.params.artistId,
+			Number(req.query.limit)
+		).then((news) => {
+			res.json(news);
+		});
 	}
 });
 

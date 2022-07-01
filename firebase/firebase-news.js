@@ -57,7 +57,7 @@ async function getNewsByArtistUsingLimitAndStartAfter(
 		.startAfter(startAfter)
 		.limit(limit)
 		.get();
-	const lastNews = snapshot.docs[snapshot.docs.length - 1];
+	const lastNews = snapshot.docs[snapshot.docs.length - 1].id;
 	const news = snapshot.docs.map((doc) => doc.data());
 	return { news, lastNews };
 }
