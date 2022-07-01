@@ -1,10 +1,12 @@
 const { getAllArtists } = require('../../../firebase/firebase-artist.js');
-const { getNewsByArtist } = require('../../../firebase/firebase-news.js');
+const {
+	getNewsByArtistUsingLimit,
+	getNewsByArtistUsingLimitAndStartAfter,
+} = require('../../../firebase/firebase-news.js');
 const {
 	addUser,
 	addSubscription,
 	removeSubscription,
-	getSubscriptions,
 	isSubscribed,
 	getSubscribedArtists,
 	getRecentNews,
@@ -12,63 +14,70 @@ const {
 const { Router } = require('express');
 const router = Router();
 
-router.get('/api/artist/all', (req, res) => {
+// get all artists
+router.get('/api/artist', (req, res) => {
 	getAllArtists().then((artists) => {
 		res.json(artists);
 	});
 });
 
-router.get('/api/artist/subbed', (req, res) => {
+router.get('/api/news/:artistId/:limit', (req, res) => {
+	getNewsByArtistUsingLimit(req.params.artistId, req.params.limit).then(
+		(news) => {
+			res.json(news);
+		}
+	);
+});
+
+router.get('/api/news/:artistId/:limit/:start', (req, res) => {
+	getNewsByArtistUsingLimitAndStartAfter(
+		req.query.artistId,
+		req.query.limit,
+		req.query.start
+	).then((news) => {
+		res.json(news);
+	});
+});
+
+// Recent news of artists that the user is subscribed to
+router.get('/api/user/:uid/news', (req, res) => {
+	getRecentNews(req.params.uid).then((news) => {
+		res.json(news);
+	});
+});
+
+// Register user
+router.post('/api/user/:uid', (req, res) => {
+	addUser(req.params.uid).then(() => {
+		res.json({ success: true });
+	});
+});
+
+// Get user subscribed artists
+router.get('/api/user/:uid/subs', (req, res) => {
 	getSubscribedArtists(req.query.uid).then((artists) => {
 		res.json(artists);
 	});
 });
 
-router.get('/api/news/', (req, res) => {
-	console.log(req.query.array);
-	getNewsByArtist(req.query.array).then((news) => {
-		res.json(news);
-	});
-});
-
-router.get('/api/news/recent', (req, res) => {
-	getRecentNews(req.query.uid).then((news) => {
-		res.json(news);
-	});
-});
-
-router.post('/api/user/add', (req, res) => {
-	console.log(req.body);
-	addUser(req.body).then(() => {
+// Subscribe to artist
+router.put('/api/user/:uid/subs/:artistId', (req, res) => {
+	addSubscription(req.query.uid, req.query.artistId).then(() => {
 		res.json({ success: true });
 	});
 });
 
-router.put('/api/user/sub', (req, res) => {
-	console.log(req.body);
-	addSubscription(req.body.uid, req.body.subscription).then(() => {
-		res.json({ success: true });
-	});
-});
-
-router.put('/api/user/unsub', (req, res) => {
-	console.log(req.body);
+// Unsubscribe from artist
+router.delete('/api/user/:uid/subs/:artistId', (req, res) => {
 	removeSubscription(req.body.uid, req.body.subscription).then(() => {
 		res.json({ success: true });
 	});
 });
 
-router.get('/api/user/subbed', (req, res) => {
-	console.log(req.query);
+// Check if user is subscribed to artist
+router.get('/api/user/:uid/subs/:artistId', (req, res) => {
 	isSubscribed(req.query.uid, req.query.artistId).then((subscribed) => {
 		res.json({ subscribed });
-	});
-});
-
-router.get('/api/user/subs', (req, res) => {
-	console.log(req.query);
-	getSubscriptions(req.query.uid).then((subscriptions) => {
-		res.json(subscriptions);
 	});
 });
 

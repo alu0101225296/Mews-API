@@ -31,4 +31,41 @@ async function getNewsByArtist(artistId) {
 	return snapshot.docs.map((doc) => doc.data());
 }
 
-module.exports = { addNews, getAllNews, getNewsByArtist };
+async function getNewsByArtistUsingLimit(artistId, limit) {
+	const snapshot = await db
+		.collection('Artists')
+		.doc(artistId)
+		.collection('News')
+		.orderBy('date', 'desc')
+		.limit(limit)
+		.get();
+	const lastNews = snapshot.docs[snapshot.docs.length - 1];
+	const news = snapshot.docs.map((doc) => doc.data());
+	return { news, lastNews };
+}
+
+async function getNewsByArtistUsingLimitAndStartAfter(
+	artistId,
+	limit,
+	startAfter
+) {
+	const snapshot = await db
+		.collection('Artists')
+		.doc(artistId)
+		.collection('News')
+		.orderBy('date', 'desc')
+		.startAfter(startAfter)
+		.limit(limit)
+		.get();
+	const lastNews = snapshot.docs[snapshot.docs.length - 1];
+	const news = snapshot.docs.map((doc) => doc.data());
+	return { news, lastNews };
+}
+
+module.exports = {
+	addNews,
+	getAllNews,
+	getNewsByArtist,
+	getNewsByArtistUsingLimit,
+	getNewsByArtistUsingLimitAndStartAfter,
+};
